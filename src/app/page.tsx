@@ -215,6 +215,12 @@ export default function Home() {
                 </ShimmerButton>
               </button>
             </form>
+
+            <div className="w-full text-center mt-4">
+              <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide">
+                Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+              </p>
+            </div>
           </ShineBorder>
         </motion.div>
       </div>
@@ -338,7 +344,7 @@ export default function Home() {
             />
           </BlurFade>
 
-          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4">
+          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4 w-full">
             {secondVideoFinished ? (
               <div onClick={handleFinishSecondVideo} className="w-full max-w-sm cursor-pointer">
                 <ShimmerButton 
@@ -361,6 +367,10 @@ export default function Home() {
                 Pular Vídeo &rarr;
               </button>
             )}
+            
+            <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide mt-8 text-center">
+              Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+            </p>
           </BlurFade>
         </div>
       </div>
@@ -397,7 +407,7 @@ export default function Home() {
             />
           </BlurFade>
 
-          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4">
+          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4 w-full">
             {thirdVideoFinished ? (
               <div onClick={handleFinishThirdVideo} className="w-full max-w-sm cursor-pointer">
                 <ShimmerButton 
@@ -420,6 +430,10 @@ export default function Home() {
                 Pular Vídeo &rarr;
               </button>
             )}
+
+            <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide mt-8 text-center">
+              Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+            </p>
           </BlurFade>
         </div>
       </div>
@@ -464,6 +478,12 @@ export default function Home() {
             </button>
           </ShineBorder>
         </BlurFade>
+
+        <div className="absolute bottom-4 left-0 w-full text-center z-50">
+          <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide max-w-2xl mx-auto px-4">
+            Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+          </p>
+        </div>
       </div>
     );
   }
@@ -498,7 +518,7 @@ export default function Home() {
             />
           </BlurFade>
 
-          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4">
+          <BlurFade delay={0.5} inView className="flex flex-col items-center gap-4 w-full">
             {videoFinished ? (
               <div onClick={handleStart} className="w-full max-w-sm cursor-pointer">
                 <ShimmerButton 
@@ -521,6 +541,10 @@ export default function Home() {
                 Pular Vídeo &rarr;
               </button>
             )}
+
+            <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide mt-8 text-center">
+              Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+            </p>
           </BlurFade>
         </div>
       </div>
@@ -668,6 +692,12 @@ export default function Home() {
               </ShimmerButton>
             </div>
           </BlurFade>
+
+          <div className="w-full text-center mt-8 pb-8">
+            <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide max-w-2xl mx-auto">
+              Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+            </p>
+          </div>
 
         </div>
       </div>
@@ -839,8 +869,8 @@ export default function Home() {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="p-8 backdrop-blur-md bg-black/20 border-t border-white/5 relative z-20">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
+      <footer className="p-8 backdrop-blur-md bg-black/20 border-t border-white/5 relative z-20 flex flex-col gap-4">
+        <div className="max-w-4xl mx-auto flex justify-between items-center w-full">
           <button
             onClick={handlePrev}
             disabled={currentStep === 0}
@@ -871,6 +901,12 @@ export default function Home() {
               {currentStep !== questions.length - 1 && <ArrowRight size={20} />}
             </span>
           </ShimmerButton>
+        </div>
+        
+        <div className="w-full text-center">
+          <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide max-w-2xl mx-auto">
+            Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+          </p>
         </div>
       </footer>
 
