@@ -66,13 +66,15 @@ export default function Home() {
   const BREAKPOINT_VIDEO_2 = 0; // Após pergunta 1 (index 0)
   const BREAKPOINT_VIDEO_3 = 1; // Após pergunta 2 (index 1)
 
-  // Efeito para "auto-focus" em inputs de texto no tablet
+  // Efeito para "auto-focus" em inputs de texto no tablet - REMOVIDO
+  /*
   useEffect(() => {
     if (isStarted && !isCompleted && !showVideo) {
       const input = document.getElementById(`input-${currentStep}`);
       if (input) input.focus();
     }
   }, [currentStep, isCompleted, isStarted, showVideo]);
+  */
 
   const handleStart = () => {
     setShowVideo(false);
@@ -795,7 +797,7 @@ export default function Home() {
                               value={answers[`other_${currentQ.id}`] || ''}
                               onChange={(e) => setAnswers(prev => ({ ...prev, [`other_${currentQ.id}`]: e.target.value }))}
                               className="w-full bg-white/10 border border-white/20 rounded-xl p-4 text-white placeholder:text-gray-400 focus:outline-none focus:border-[var(--tibsovo-orange)] focus:ring-1 focus:ring-[var(--tibsovo-orange)] transition-all"
-                              autoFocus
+                              // autoFocus removido
                             />
                           </motion.div>
                         )}
