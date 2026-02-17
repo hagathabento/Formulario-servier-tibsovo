@@ -35,4 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Large media files (GitHub limit 100MB)
-public/*.mp4
+# public/*.mp4
+*_original.mp4
