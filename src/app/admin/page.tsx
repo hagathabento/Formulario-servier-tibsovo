@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { ArrowLeft, RefreshCw, Database } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Database, Lock } from 'lucide-react';
 import Link from 'next/link';
 
 // Definição das perguntas para referência (pode ser importado de um arquivo compartilhado idealmente)
@@ -14,9 +14,21 @@ const questionsMap: Record<number, string> = {
 };
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [submissions, setSubmissions] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'servierhagatha') {
+      setIsAuthenticated(true);
+      fetchSubmissions();
+    } else {
+      alert('Senha incorreta!');
+    }
+  };
 
   const fetchSubmissions = async () => {
     setLoading(true);
@@ -40,10 +52,6 @@ export default function AdminPage() {
     }
   };
 
-  useEffect(() => {
-    fetchSubmissions();
-  }, []);
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleString('pt-BR');
   };
@@ -60,6 +68,45 @@ export default function AdminPage() {
     
     return answer;
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
+        <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700">
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-[var(--tibsovo-orange)]/20 rounded-full">
+              <Lock className="text-[var(--tibsovo-orange)]" size={32} />
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold text-center mb-6">Acesso Restrito</h2>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-400 mb-1">Senha de Acesso</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--tibsovo-orange)] transition-colors"
+                placeholder="Digite a senha..."
+                autoFocus
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[var(--tibsovo-orange)] hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition-colors"
+            >
+              Entrar
+            </button>
+          </form>
+          <div className="mt-6 text-center">
+            <Link href="/" className="text-gray-500 hover:text-white text-sm transition-colors">
+              &larr; Voltar ao Início
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
