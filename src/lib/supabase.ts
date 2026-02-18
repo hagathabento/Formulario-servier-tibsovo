@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js'
 // mas para este caso específico funcionará.
 
 const supabaseUrl = 'https://lvnqqbeldyihjjuixmsb.supabase.co'
-const supabaseKey = 'sb_secret_wOpcaRrhHknfgSlMgUcg2g_qcpFqle'
+const supabaseKey = 'sb_secret_wOpcaRrhHknfgSlMgUcg2g_qcpFqleB'
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase environment variables')
