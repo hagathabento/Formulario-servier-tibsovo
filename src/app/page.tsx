@@ -10,6 +10,7 @@ import { ShimmerButton } from '@/components/magicui/shimmer-button';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { SparklesText } from '@/components/magicui/sparkles-text';
+import { supabase } from '@/lib/supabase';
 import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog';
 
 // Definição das Perguntas
@@ -248,6 +249,30 @@ export default function Home() {
       setDirection(1);
       setCurrentStep(prev => prev + 1);
     } else {
+      // Salvar no Supabase ao concluir
+      const saveSubmission = async () => {
+        try {
+          const { error } = await supabase
+            .from('submissions')
+            .insert([
+              {
+                name: userName,
+                answers: answers,
+                completed: true
+              }
+            ]);
+          
+          if (error) {
+            console.error('Erro ao salvar submissão:', error);
+          } else {
+            console.log('Submissão salva com sucesso!');
+          }
+        } catch (err) {
+          console.error('Erro inesperado:', err);
+        }
+      };
+
+      saveSubmission();
       setIsCompleted(true);
     }
   };
