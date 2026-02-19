@@ -16,3 +16,6 @@ create policy "Enable insert for everyone" on submissions for insert with check 
 -- Política para permitir leitura apenas para admins (aqui simplificado para todos, ajuste conforme necessário)
 -- Em produção, você deve restringir isso
 create policy "Enable read access for all users" on submissions for select using (true);
+
+-- Política para permitir exclusão (em produção, restringir com auth)
+create policy "Enable delete for all users" on submissions for delete using (true);

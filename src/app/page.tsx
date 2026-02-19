@@ -18,19 +18,19 @@ const questions = [
   {
     id: 1,
     type: 'text',
-    question: '1. Após a confirmação do diagnóstico de Leucemia Mieloide Aguda.\nPensando na sua prática clínica: O que mais dificulta a solicitação imediata do painel molecular após o diagnóstico de LMA?',
+    question: '1. Após a confirmação do diagnóstico de Leucemia Mieloide Aguda. \nPensando na sua prática clínica: O que mais dificulta a solicitação imediata do painel molecular após o diagnóstico de LMA?',
     placeholder: 'Digite sua resposta aqui...'
   },
   {
     id: 2,
     type: 'text',
-    question: '2. Passaram-se 4 dias e o paciente continua clinicamente estável.\nBaseada na apresentação dos dados da Dra Voso, qual seria sua conduta hoje?',
+    question: '2. Passaram-se 4 dias e o paciente continua clinicamente estável. \nBaseada na apresentação dos dados da Dra. Voso, qual seria sua conduta hoje?',
     placeholder: 'Descreva sua conduta...'
   },
   {
     id: 3,
     type: 'radio',
-    question: '3. O laudo chegou no D5: IDH1 Mutado. D = data do envio do teste molecular.\nEste paciente, após a discussão dos dados apresentados pelo Dr. Stein, seria candidato a Tibsovo®?',
+    question: '3. O laudo chegou no D5: IDH1 Mutado. D = data do envio do teste molecular. \nEste paciente, após a discussão dos dados apresentados pelo Dr. Stein, seria candidato a Tibsovo®?',
     options: ['Sim', 'Não', 'Outro (especifique)']
   },
   {
