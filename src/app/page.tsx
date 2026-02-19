@@ -18,7 +18,7 @@ const questions = [
   {
     id: 1,
     type: 'text',
-    question: '1. Após a confirmação do diagnóstico de Leucemia Mielóide Aguda.\nPensando na sua prática clínica: O que mais atrapalha a solicitação imediata do painel molecular após o diagnóstico de LMA?',
+    question: '1. Após a confirmação do diagnóstico de Leucemia Mieloide Aguda.\nPensando na sua prática clínica: O que mais dificulta a solicitação imediata do painel molecular após o diagnóstico de LMA?',
     placeholder: 'Digite sua resposta aqui...'
   },
   {
@@ -30,7 +30,7 @@ const questions = [
   {
     id: 3,
     type: 'radio',
-    question: '3. O laudo chegou no D+5: IDH1 Mutado. D = data do envio do teste molecular.\nEste paciente, após a discussão dos dados apresentados pelo Dr. Stein, seria candidato a Tibsovo®?',
+    question: '3. O laudo chegou no D5: IDH1 Mutado. D = data do envio do teste molecular.\nEste paciente, após a discussão dos dados apresentados pelo Dr. Stein, seria candidato a Tibsovo®?',
     options: ['Sim', 'Não', 'Outro (especifique)']
   },
   {
@@ -63,6 +63,7 @@ export default function Home() {
   const [showThirdVideo, setShowThirdVideo] = useState(false);
   const [thirdVideoFinished, setThirdVideoFinished] = useState(false);
   const [video3Watched, setVideo3Watched] = useState(false);
+  const [showMinibula, setShowMinibula] = useState(false);
   
   const BREAKPOINT_VIDEO_2 = 0; // Após pergunta 1 (index 0)
   const BREAKPOINT_VIDEO_3 = 1; // Após pergunta 2 (index 1)
@@ -273,7 +274,7 @@ export default function Home() {
       };
 
       saveSubmission();
-      setIsCompleted(true);
+      setShowMinibula(true);
     }
   };
 
@@ -465,6 +466,124 @@ export default function Home() {
     );
   }
 
+  if (showMinibula) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[var(--tibsovo-bg)] text-white relative overflow-hidden">
+        <div className="absolute top-6 left-6 z-50">
+          <img src="/image.png" alt="TIBSOVO®" className="h-14 md:h-20 w-auto object-contain" />
+        </div>
+
+        <div className="absolute bottom-4 right-4 z-50 opacity-80 pointer-events-none">
+          <img src="/lgooservier.png" alt="Servier" className="h-6 md:h-8 w-auto object-contain" />
+        </div>
+
+        <Particles className="absolute inset-0 z-0" quantity={60} ease={80} color="#FF6B4A" refresh />
+
+        <div className="flex-1 overflow-y-auto z-10 px-4 py-24 md:px-8">
+          <div className="max-w-4xl mx-auto">
+            <BlurFade delay={0.2} inView>
+              <ShineBorder
+                className="bg-white/5 backdrop-blur-lg p-6 md:p-10 shadow-2xl border border-white/10 relative flex flex-col gap-6"
+                color={["#FF6B4A", "#6A44A3", "#FF6B4A"]}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <FileText className="text-[var(--tibsovo-orange)]" size={28} />
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">MINIBULA</h2>
+                </div>
+
+                <div className="space-y-4 text-[11px] md:text-xs text-gray-300 leading-relaxed">
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                    <h3 className="text-sm font-bold text-red-400 mb-2">CONTRAINDICAÇÃO:</h3>
+                    <p>Histórico familiar de morte súbita ou arritmia ventricular polimórfica e intervalo QT/QTc {'>'} 500 m/seg, independentemente do método de correção.</p>
+                  </div>
+
+                  <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                    <h3 className="text-sm font-bold text-yellow-400 mb-2">INTERAÇÃO MEDICAMENTOSA:</h3>
+                    <p>Medicamentos conhecidos por prolongar o intervalo QTc.</p>
+                  </div>
+
+                  <div className="space-y-3 text-gray-400">
+                    <p><strong className="text-gray-200">APRESENTAÇÃO:</strong> Embalagem com 60 comprimidos revestidos.</p>
+                    
+                    <p><strong className="text-gray-200">COMPOSIÇÃO:</strong> Cada comprimido revestido contém 250 mg de ivosidenibe.</p>
+                    
+                    <p><strong className="text-gray-200">INDICAÇÃO:</strong> Colangiocarcinoma localmente avançado ou metastático: Monoterapia antineoplásica para o tratamento de pacientes adultos com mutação no gene IDH1 R132 que foram tratados anteriormente com pelo menos uma linha prévia de terapia sistêmica. Leucemia mieloide aguda (LMA) recém-diagnosticada: Combinação com azacitidina para o tratamento de pacientes adultos com mutação no gene IDH1 R132 e que não são elegíveis para receber quimioterapia intensiva. Leucemia mieloide aguda recidivada ou refratária (LMA R/R) em pacientes com mutação no gene IDH1 R132.</p>
+
+                    <p><strong className="text-gray-200">POSOLOGIA E MODO DE USO*:</strong> O tratamento deve ser iniciado sob a supervisão de médicos com experiência na utilização de medicamentos anticancerígenos. Antes de tomar Tibsovo, os pacientes devem ter a confirmação de uma mutação IDH1 R132 usando um teste de diagnóstico apropriado. ECG, hemograma completo e bioquímica do sangue devem ser avaliados antes do início do tratamento e durante o tratamento. O intervalo QT corrigido pela frequência cardíaca (QTc) deve ser inferior a 450 mseg antes do início do tratamento. Dose recomendada: 500 mg de TIBSOVO® (2 comprimidos de 250 mg) por via oral uma vez ao dia. TIBSOVO® pode ser tomado com ou sem alimentos. Evite refeições ricas em gordura, pois isso leva ao aumento das concentrações plasmáticas de ivosidenibe. O tratamento com TIBSOVO® deve ser continuado até a progressão da doença ou até que o tratamento não seja mais tolerado pelo paciente. Nos casos de LMA em combinação com azacitidina e LMA refratária ou recidivada, para pacientes sem progressão da doença ou toxicidade inaceitável, recomenda-se tratar os pacientes por um período mínimo de 6 meses, para dar tempo à resposta clínica.</p>
+
+                    <p><strong className="text-gray-200">Colangiocarcinoma:</strong> A dose recomendada é de 500 mg de TIBSOVO® (2 comprimidos de 250 mg de TIBSOVO®) por via oral, uma vez ao dia. O tratamento com TIBSOVO® deve ser continuado até a progressão da doença ou até que o tratamento não seja mais tolerado pelo paciente.</p>
+
+                    <p><strong className="text-gray-200">Leucemia mieloide aguda em combinação com azacitidina:</strong> A dose recomendada é de 500 mg de TIBSOVO (2 comprimidos de 250 mg de Tibsovo) por via oral, uma vez ao dia. TIBSOVO® deve ser iniciado no Ciclo 1, Dia 1, em combinação com azacitidina 75 mg/m² de área de superfície corporal, por via intravenosa ou subcutânea, uma vez por dia, nos Dias 1-7 (ou Dias 1-5 e 8-9) de cada ciclo de 28 dias. Consulte as informações completas do produto para azacitidina. O tratamento com TIBSOVO® deve ser continuado até a progressão da doença ou até que o tratamento não seja mais tolerado pelo paciente. Para pacientes sem progressão da doença ou toxicidade inaceitável, recomenda-se tratar os pacientes por um período mínimo de 6 meses, para dar tempo à resposta clínica.</p>
+
+                    <p><strong className="text-gray-200">Leucemia mieloide aguda refratária ou recidiva:</strong> A dose recomendada é de 500 mg de TIBSOVO (2 comprimidos de 250 mg de Tibsovo) por via oral, uma vez ao dia. O tratamento com TIBSOVO® deve ser continuado até a progressão da doença ou até que o tratamento não seja mais tolerado pelo paciente. Para pacientes sem progressão da doença ou toxicidade inaceitável, recomenda-se tratar os pacientes por um período mínimo de 6 meses, para dar tempo à resposta clínica. Modificações de dose são recomendadas nos casos de síndrome de diferenciação, para controlar a administração concomitante de inibidores moderados ou fortes do CYP3A4, leucocitose, prolongamento do intervalo QTc e reações adversas de grau 3 ou superior.</p>
+
+                    <p><strong className="text-gray-200">CONTRAINDICAÇÕES*:</strong> Hipersensibilidade à substância ativa ou a qualquer um dos excipientes. Administração concomitante de indutores potentes do CYP3A4 ou dabigatrana. Síndrome congênita do QT longo. Histórico familiar de morte súbita ou arritmia ventricular polimórfica. Intervalo QT/QTc {'>'} 500 m/seg, independentemente do método de correção.</p>
+
+                    <p><strong className="text-gray-200">ADVERTÊNCIAS E PRECAUÇÕES*:</strong> Síndrome de diferenciação para LMA: A síndrome de diferenciação está associada à rápida proliferação e diferenciação de células mieloides e foi observada em pacientes tratados com ivosidenibe, podendo apresentar riscos de vida ou ser fatal. Os sintomas incluem: leucocitose não infecciosa, edema periférico, pirexia, dispneia, derrame pleural, hipotensão, hipóxia, edema pulmonar, pneumonite, derrame pericárdico, erupção cutânea, sobrecarga de líquidos, síndrome de lise tumoral e aumento da creatinina. Se houver suspeita de síndrome de diferenciação, iniciar corticosteroides orais ou intravenosos (por exemplo, dexametasona) e monitorização hemodinâmica até melhoria. Se for observada leucocitose, iniciar tratamento com hidroxiureia e/ou leucaferese conforme indicação clínica.</p>
+
+                    <p><strong className="text-gray-200">Prolongamento do intervalo QTc:</strong> Qualquer anormalidade deve ser tratada imediatamente. Em caso de sintomatologia sugestiva, deve ser realizado um ECG. Em caso de vômitos e/ou diarreia graves, deve ser realizada uma avaliação de anormalidade dos eletrólitos séricos. Os pacientes devem ser informados do risco de prolongamento do intervalo QT, dos seus sinais e sintomas e aconselhados a contatar o seu médico imediatamente se estes ocorrerem. Os pacientes devem ser tratados com precaução e cuidadosamente monitorizados quanto ao prolongamento do intervalo QTc se não for possível o uso de uma adequada alternativa aos medicamentos conhecidos por prolongar o intervalo QTc, ou inibidores moderados ou potentes do CYP3A4. Monitore de perto os pacientes com insuficiência cardíaca congestiva ou anormalidades eletrolíticas. O tratamento deve ser descontinuado definitivamente se os pacientes desenvolverem prolongamento do intervalo QTc com sinais ou sintomas de arritmia com risco de vida. Use com cautela em pacientes com níveis de albumina abaixo da faixa normal ou abaixo do peso.</p>
+
+                    <p><strong className="text-gray-200">Insuficiência renal grave:</strong> Use com cautela e monitore de perto.</p>
+
+                    <p><strong className="text-gray-200">Insuficiência hepática:</strong> Use com cautela e monitore de perto em pacientes com insuficiência hepática moderada e grave (Child-Pugh classes B e C). Use com cautela em pacientes com insuficiência hepática leve (Child-Pugh classe A).</p>
+
+                    <p><strong className="text-gray-200">Excipientes:</strong> Atenção: contém lactose (tipo de açúcar) abaixo de 0,25 g/comprimido. Este medicamento não deve ser usado por pessoas com síndrome de má-absorção de glicose-galactose. Teor de sódio: Este medicamento contém menos de 1 mmol de sódio (23 mg) por comprimido, ou seja, é praticamente &quot;isento de sódio&quot;. Atenção: Contém os corantes dióxido de titânio e azul de indigotina 132 laca de alumínio.</p>
+
+                    <p><strong className="text-gray-200">INTERAÇÕES*:</strong> Contraindicados: indutores fortes de CYP3A4; dabigatrana. Não recomendado: inibidores moderados ou fortes do CYP3A4; medicamentos conhecidos por prolongar o intervalo QTc; substratos OAT3 ou OATP1B1/1B3; substratos CYP3A4, CYP2B6, CYP2C8 ou CYP2C9 com um índice terapêutico estreito, ou substratos CYP2C19; itraconazol ou cetoconazol; substratos UGT. Precauções: contraceptivos hormonais.</p>
+
+                    <p><strong className="text-gray-200">Gravidez:</strong> Não recomendado. Este medicamento não deve ser utilizado por mulheres grávidas sem orientação médica ou do cirurgião dentista.</p>
+
+                    <p><strong className="text-gray-200">Lactação:</strong> Deve ser descontinuado durante o tratamento e por pelo menos 1 mês após a última dose. O uso deste medicamento no período da lactação depende da avaliação e acompanhamento do seu médico ou cirurgião-dentista.</p>
+
+                    <p><strong className="text-gray-200">Contracepção:</strong> As mulheres com potencial para engravidar devem fazer um teste de gravidez antes de iniciar o tratamento e devem evitar engravidar durante o tratamento. Deve ser utilizado um método contraceptivo eficaz durante o tratamento e por pelo menos 1 mês após a última dose.</p>
+
+                    <p><strong className="text-gray-200">Dirigir ou operar máquinas:</strong> Pouca influência. Fadiga e tontura devem ser consideradas ao avaliar a capacidade do paciente para conduzir ou operar máquinas.</p>
+
+                    <p><strong className="text-gray-200">REAÇÕES ADVERSAS*:</strong> Em pacientes com colangiocarcinoma localmente avançado ou metastático: Muito comum: anemia, diminuição do apetite, neuropatia periférica, cefaleia, ascite, diarreia, vômitos, náuseas, dor abdominal, erupção cutânea, fadiga, aumento da aspartato aminotransferase, aumento da bilirrubina no sangue. Comum: icterícia colestática, hiperbilirrubinemia, queda, eletrocardiograma QT prolongado, alanina aminotransferase aumentada, contagem de leucócitos diminuída, contagem de plaquetas diminuída.</p>
+
+                    <p><strong className="text-gray-200">Em pacientes com LMA recém diagnosticadas tratados com TIBSOVO® em combinação com azacitidina:</strong> Muito comum: síndrome de diferenciação, leucocitose, trombocitopenia, neutropenia, insônia, dor de cabeça, tontura, vômito, dor nas extremidades, artralgia, dor nas costas e eletrocardiograma com intervalo QTc prolongado. Comum: leucopenia, neuropatia periférica e dor orofaríngea.</p>
+
+                    <p><strong className="text-gray-200">Em pacientes com LMA recidivada ou refratária:</strong> Muito comum: fadiga, edema, pirexia, dor no peito, leucocitose, síndrome de diferenciação, artralgia, mialgia, diarreia, náusea, mucosite, prisão de ventre, vômito, dor abdominal, dispneia, tosse, derrame pleural, eletrocardiograma com intervalo QT prolongado, erupção cutânea, diminuição do apetite, síndrome de lise tumoral, dor de cabeça, neuropatia e hipotensão.</p>
+
+                    <p><strong className="text-gray-200">SUPERDOSAGEM*:</strong> É provável que a toxicidade se manifeste como exacerbação das reações adversas associadas ao TIBSOVO®. Os pacientes devem ser monitorados de perto e receber cuidados de suporte adequados. Não existe um antídoto específico para a superdose de TIBSOVO.</p>
+
+                    <p><strong className="text-gray-200">PROPRIEDADES:</strong> Ivosidenibe é um inibidor da enzima IDH1 mutada. A IDH1 mutada converte alfa-cetoglutarato (α-KG) em 2-hidroxiglutarato (2-HG), que bloqueia a diferenciação celular e promove tumorigênese em malignidades hematológicas e não hematológicas. O mecanismo de ação de TIBSOVO®, além de sua habilidade em reduzir 2-HG e restaurar a diferenciação celular, não é totalmente compreendido.</p>
+
+                    <p className="mt-4 pt-4 border-t border-white/10 text-[10px] text-gray-500">*Para informação completa, consulte a bula do produto. Medicamento registrado sob n° 1.1278.0089. VENDA SOB PRESCRIÇÃO. Laboratórios Servier do Brasil Ltda. Estrada dos Bandeirantes, 4211 - Jacarepaguá – RJ. CEP 22775-113. SAC: 0800-703-3431. V02</p>
+                  </div>
+                </div>
+
+                <div className="flex justify-center pt-4">
+                  <ShimmerButton
+                    onClick={() => {
+                      setShowMinibula(false);
+                      setIsCompleted(true);
+                    }}
+                    className="font-bold text-lg shadow-lg"
+                    background="var(--tibsovo-orange)"
+                    shimmerColor="#ffffff"
+                    shimmerDuration="2.5s"
+                  >
+                    <span className="flex items-center gap-3">
+                      Continuar
+                      <ArrowRight size={20} />
+                    </span>
+                  </ShimmerButton>
+                </div>
+              </ShineBorder>
+            </BlurFade>
+          </div>
+        </div>
+
+        <div className="absolute bottom-4 left-0 w-full text-center z-50 px-4">
+          <p className="text-[9px] md:text-[10px] text-gray-500/60 font-light max-w-3xl mx-auto leading-relaxed">
+            Material destinado a profissionais de saúde habilitados a prescrever ou dispensar medicamentos.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (isCompleted) {
     return (
       <div className="min-h-screen flex items-center justify-center p-8 bg-[var(--tibsovo-bg)] text-white relative overflow-hidden">
@@ -501,12 +620,20 @@ export default function Home() {
             >
               Voltar ao início
             </button>
+
+            <div className="mt-8 pt-6 border-t border-white/10 text-left w-full space-y-3">
+              <h4 className="text-sm font-semibold text-gray-300">Referências:</h4>
+              <ol className="text-[11px] md:text-xs text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
+                <li>MONTESINOS, Pau et al. Ivosidenib and Azacitidine in IDH1-Mutated Acute Myeloid Leukemia. <em>The New England Journal of Medicine</em>, v. 386, n. 16, p. 1519-1531, 21 abr. 2022.</li>
+                <li>MONTESINOS, Pau et al. Long-term results from the AGILE study of ivosidenib (IVO) plus azacitidine (AZA) versus placebo (PBO) plus AZA in newly diagnosed IDH1-mutated acute myeloid leukemia (AML). <em>Blood Advances</em>. Publicado online em 24 de julho de 2025.</li>
+              </ol>
+            </div>
           </ShineBorder>
         </BlurFade>
 
-        <div className="absolute bottom-4 left-0 w-full text-center z-50">
-          <p className="text-[10px] md:text-xs text-gray-500/60 font-light uppercase tracking-wide max-w-2xl mx-auto px-4">
-            Material destinado a profissionais de saúde habilitados a prescrever e dispensar medicamentos
+        <div className="absolute bottom-4 left-0 w-full text-center z-50 px-4">
+          <p className="text-[9px] md:text-[10px] text-gray-500/60 font-light max-w-3xl mx-auto leading-relaxed">
+            M-TIBSO-BR-202602-00006 Fevereiro 2026 | Material de distribuição exclusiva a profissionais de saúde habilitados a prescrever medicamentos. A mensagem que acompanha este material contém links com informações complementares não dissociadas dele. O conteúdo deste material é direcionado ao destinatário da mensagem. Não compartilhe nenhuma parte desta mensagem com terceiros.
           </p>
         </div>
       </div>
@@ -628,7 +755,7 @@ export default function Home() {
                 <div className="space-y-4 text-gray-100">
                   <div className="flex flex-col gap-1">
                     <span className="text-xs uppercase tracking-wider text-white/70 font-bold">Paciente</span>
-                    <p className="text-lg font-medium">Homem, 72 anos, aposentado.</p>
+                    <p className="text-lg font-medium">Homem, 78 anos, aposentado.</p>
                   </div>
                   
                   <div className="flex flex-col gap-1">
@@ -659,7 +786,7 @@ export default function Home() {
                   <div className="p-3 rounded-2xl bg-white/10 text-white shadow-inner">
                     <FileText size={24} />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">Resultado dos Exames</h3>
+                  <h3 className="text-xl font-semibold text-white">Após suspeitas foram solicitados os seguintes exames no pronto socorro</h3>
                 </div>
 
                 <div className="space-y-5">
